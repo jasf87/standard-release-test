@@ -39,6 +39,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Bump version
-        id: bump
-        uses: mickem/gh-action-bump-maven-version
+      - name: Bump Versions
+        # You may pin to the exact commit or the version.
+        # uses: remorses/bump-version@bcb347631544a8b9b146bf5de4548376c1f71661
+        uses: remorses/bump-version@v8
