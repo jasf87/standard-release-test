@@ -28,3 +28,17 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_LOGIN_TOKEN }}
+          ref: ${{ github.head_ref }}
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Bump version
+        id: bump
+        uses: mickem/gh-action-bump-maven-version
