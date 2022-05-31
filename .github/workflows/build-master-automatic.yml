@@ -20,6 +20,18 @@ jobs:
           java-version: 11
           distribution: 'adopt'
 
+      - name: Setup m2 cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Set git email
+        run: git config --global user.email "jose.sanchez@modusbox.com"
+      - name: Set git name
+        run: git config --global user.name "jose.sanchez"
+
       - name: Get current version without snapshot to tag the docker images
         id: version-to-release
         run:  |
