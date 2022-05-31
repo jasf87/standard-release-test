@@ -41,4 +41,6 @@ jobs:
         run: echo "Current version to release ${{ steps.version-to-release.outputs.TAG_NAME }}"
 
       - name: Prepare release to increment pom version and create tag
-        run:  mvn clean --batch-mode release:prepare
+        env:
+          RELEASE_TAG: ${{ steps.version-to-release.outputs.TAG_NAME  }}
+        run:  mvn clean --batch-mode -Dtag=$RELEASE_TAG  release:prepare
