@@ -9,14 +9,14 @@
     </parent>
     <groupId>io.portx.standard</groupId>
     <artifactId>standard-release</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6-SNAPSHOT</version>
     <name>standard-release</name>
     <description>Standard Release Test</description>
     <scm>
         <connection>scm:git:https://github.com/jasf87/standard-release-test.git</connection>
         <developerConnection>scm:git:https://github.com/jasf87/standard-release-test.git</developerConnection>
         <url>https://github.com/jasf87/standard-release-test</url>
-        <tag>0.0.5</tag>
+        <tag>HEAD</tag>
     </scm>
     <properties>
         <java.version>11</java.version>
