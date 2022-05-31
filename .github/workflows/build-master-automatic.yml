@@ -34,8 +34,9 @@ jobs:
 
       - name: Get current version without snapshot to tag the docker images
         id: version-to-release
-        run:  |
-          echo "::set-output name=TAG_NAME::$(mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v INFO | cut -d- -f1)"
+        run: |
+          export version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | cut -d- -f1)
+          echo "::set-output name=TAG_NAME::$version"
 
       - name: Print current version
         run: echo "Current version to release ${{ steps.version-to-release.outputs.TAG_NAME }}"
