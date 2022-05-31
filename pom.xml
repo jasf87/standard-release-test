@@ -9,7 +9,7 @@
     </parent>
     <groupId>io.portx.standard</groupId>
     <artifactId>standard-release</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>standard-release</name>
     <description>Standard Release Test</description>
     <scm>
