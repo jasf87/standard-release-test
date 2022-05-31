@@ -1,0 +1,32 @@
+# This is a basic workflow that is manually triggered
+
+name: Build for master branch
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  tag-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Set up JDK 1.11
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: 'adopt'
+
+      - name: Get current version without snapshot to tag the docker images
+        id: version-to-release
+        run:  |
+          echo "::set-output name=TAG_NAME::$(mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v INFO | cut -d- -f1)"
+
+      - name: Print current version
+        run: echo "Current version to release ${{ steps.version-to-release.outputs.TAG_NAME }}"
+
+      - name: Prepare release to increment pom version and create tag
+        run:  mvn clean --batch-mode release:prepare
